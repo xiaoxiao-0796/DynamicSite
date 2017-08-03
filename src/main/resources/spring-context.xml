@@ -67,7 +67,7 @@
     但是,你可以使用 PropertiesFactoryBean 和 SpEL 表达式来作为替代-->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--可以使用分号或者逗号创建多于一个包的路径-->
-        <property name="basePackage" value="com.loveh.dynamicsite.mapper" />
+        <property name="basePackage" value="com.lovech.dynamicsite.mapper" />
         <!--同样需要配置sqlsessionfactory-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />  
     </bean> 

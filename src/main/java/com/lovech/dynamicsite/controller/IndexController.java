@@ -1,5 +1,8 @@
 package com.lovech.dynamicsite.controller;
 
+import com.lovech.dynamicsite.entity.User;
+import com.lovech.dynamicsite.service.FooService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,20 +17,12 @@ import java.util.Locale;
  */
 @Controller
 public class IndexController {
-
-    /**
-     * Simply selects the home view to render by returning its name.
-     */
+    @Autowired
+   private FooService fooService;
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
-
-        Date date = new Date();
-        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-        String formattedDate = dateFormat.format(date);
-
-        model.addAttribute("serverTime", formattedDate );
-
+        User user=fooService.getUserById("1");
+        model.addAttribute("user",user);
         return "index";
     }
 }
