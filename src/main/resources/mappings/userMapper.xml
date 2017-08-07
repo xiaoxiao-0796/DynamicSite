@@ -6,4 +6,7 @@
        select * from users where id =#{userId}
     </select>
 
+    <select id="getUserByName" resultType="com.lovech.dynamicsite.entity.User">
+        select * from users where name =#{userId}
+    </select>
 </mapper>
