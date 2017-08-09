@@ -45,7 +45,7 @@
                 # some example chain definitions:
                 /admin/** = authc, roles[admin]
                 /docs/** = authc, perms[document:read]
-                /** = authc
+                /** = anon
                 # more URL-to-FilterChain definitions here
             </value>
         </property>
