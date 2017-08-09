@@ -6,6 +6,7 @@ package com.lovech.dynamicsite.entity;
 public class User {
     private Integer id;
     private String name;
+    private String password;
     private String email;
 
     public Integer getId() {
@@ -24,6 +25,17 @@ public class User {
         this.name = name;
     }
 
+<<<<<<< HEAD
+=======
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+>>>>>>> integrate-framework
     public String getEmail() {
         return email;
     }
