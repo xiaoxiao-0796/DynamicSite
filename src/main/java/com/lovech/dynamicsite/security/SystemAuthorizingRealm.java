@@ -2,10 +2,7 @@ package com.lovech.dynamicsite.security;
 
 import com.lovech.dynamicsite.entity.User;
 import com.lovech.dynamicsite.service.UserService;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -43,7 +40,9 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
      */
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken usernamePasswordToken= (UsernamePasswordToken) authenticationToken;
-
+        if ("lovech".equals(usernamePasswordToken.getUsername())){
+            return new SimpleAuthenticationInfo(usernamePasswordToken.getUsername(),usernamePasswordToken.getPassword(),"test");
+        }
         return null;
     }
 }
