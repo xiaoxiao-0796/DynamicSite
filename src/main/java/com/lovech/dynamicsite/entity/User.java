@@ -25,8 +25,6 @@ public class User {
         this.name = name;
     }
 
-<<<<<<< HEAD
-=======
     public String getPassword() {
         return password;
     }
@@ -35,7 +33,6 @@ public class User {
         this.password = password;
     }
 
->>>>>>> integrate-framework
     public String getEmail() {
         return email;
     }

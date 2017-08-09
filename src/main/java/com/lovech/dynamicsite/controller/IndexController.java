@@ -1,15 +1,12 @@
 package com.lovech.dynamicsite.controller;
 
-<<<<<<< HEAD
 import com.lovech.dynamicsite.entity.User;
 import com.lovech.dynamicsite.service.FooService;
 import org.springframework.beans.factory.annotation.Autowired;
-=======
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
->>>>>>> integrate-framework
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
