@@ -7,6 +7,11 @@
   <version>1.0-SNAPSHOT</version>
   <name>DynamicSite Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
+    <properties>
+        <runtime.version>1.8</runtime.version>
+    </properties>
+
   <dependencies>
     <!--junit-->
     <dependency>
@@ -92,49 +97,67 @@
           <version>1.0.18</version>
       </dependency>
       <!-- Logging -->
+      <!-- logback+slf4j -->
       <dependency>
           <groupId>org.slf4j</groupId>
           <artifactId>slf4j-api</artifactId>
-          <version>1.7.24</version>
-      </dependency>
-      <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>jcl-over-slf4j</artifactId>
           <version>1.7.7</version>
-          <scope>runtime</scope>
+          <type>jar</type>
+          <scope>compile</scope>
       </dependency>
       <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-log4j12</artifactId>
-          <version>1.7.7</version>
-          <scope>runtime</scope>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-core</artifactId>
+          <version>1.1.11</version>
+          <type>jar</type>
       </dependency>
       <dependency>
-          <groupId>log4j</groupId>
-          <artifactId>log4j</artifactId>
-          <version>1.2.15</version>
-          <exclusions>
-              <exclusion>
-                  <groupId>javax.mail</groupId>
-                  <artifactId>mail</artifactId>
-              </exclusion>
-              <exclusion>
-                  <groupId>javax.jms</groupId>
-                  <artifactId>jms</artifactId>
-              </exclusion>
-              <exclusion>
-                  <groupId>com.sun.jdmk</groupId>
-                  <artifactId>jmxtools</artifactId>
-              </exclusion>
-              <exclusion>
-                  <groupId>com.sun.jmx</groupId>
-                  <artifactId>jmxri</artifactId>
-              </exclusion>
-          </exclusions>
-          <scope>runtime</scope>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>1.1.11</version>
+          <type>jar</type>
       </dependency>
   </dependencies>
   <build>
     <finalName>DynamicSite</finalName>
+
+      <plugins>
+              <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-compiler-plugin</artifactId>
+                  <version>3.1</version>
+                  <configuration>
+                      <source>${runtime.version}</source> <!-- 源代码使用的开发版本 -->
+                      <target>${runtime.version}</target> <!-- 需要生成的目标class文件的编译版本 -->
+                      <!-- 一般而言，target与source是保持一致的，但是，有时候为了让程序能在其他版本的jdk中运行(对于低版本目标jdk，源代码中需要没有使用低版本jdk中不支持的语法)，会存在target不同于source的情况 -->
+                      <encoding>UTF-8</encoding>
+                  </configuration>
+          </plugin>
+
+          <plugin>
+          <groupId>org.eclipse.jetty</groupId>
+          <artifactId>jetty-maven-plugin</artifactId>
+          <version>9.3.7.v20160115</version>
+          <configuration>
+              <webApp>
+                  <contextPath>/hello</contextPath>
+              </webApp>
+              <scanIntervalSeconds>10</scanIntervalSeconds>
+              <stopPort>9899</stopPort>
+              <stopKey>foo</stopKey>
+              <stopWait>10</stopWait>
+              <systemProperties>
+                  <systemProperty>
+                      <name>tapestry.execution-mode</name>
+                      <value>development</value>
+                  </systemProperty>
+                  <systemProperty>
+                      <name>jetty.port</name>
+                      <value>9090</value>
+                  </systemProperty>
+              </systemProperties>
+          </configuration>
+      </plugin>
+      </plugins>
   </build>
 </project>
